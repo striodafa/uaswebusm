@@ -1,4 +1,4 @@
-
+  
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head><script src="/docs/5.3/assets/js/color-modes.js"></script>
@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.111.3">
-    <title>Starter Template · Bootstrap v5.3</title>
+    <title>Satrio Dafa (G.111.23.0033)</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/starter-template/">
 
@@ -16,7 +16,7 @@
 
     
 
-<link href="https://getbootstrap.com/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Favicons -->
 <link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -39,7 +39,8 @@
         <table class="table">
           <thead class="thead-dark">
             <tr>
-              <td scope="col">#</td>
+              <td scope="col">No</td>
+              <td scope="col">id</td>
               <td scope="col">Username</td>
               <td scope="col">Email</td>
               <td scope="col">Artikel</td>
@@ -50,19 +51,25 @@
             </tr>
           </thead>
           <tbody>
+            @foreach ($post_list as $urut => $post)
             <tr>
-              <td scope="row">-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
+              <td>{{$urut+1}}</td>
+              <td scope="row">{{ $post->id }}</td>
+              <td>{{ $post->user->username }}</td>
+              <td>{{ $post->user->email }}</td>
+              <td>{{ $post->article }}</td>
+              <td>{{ $post->jenis }}</td>
+              <td>{{ $post->created_at }}</td>
+              <td>{{ $post->updated_at }}</td>
               <td>
-                <a href="{{ site_url('Welcome/hapus/') }}" class="btn btn-danger">Delete</a>
+              <div class="btn-group" role="group" >
+                <a href="{{ site_url('Welcome/edit/' . $post->id) }}" class="btn btn-primary" style="margin-right: 10px;">Edit</a>
+                <a href="{{ site_url('Welcome/hapus/' . $post->id) }}" class="btn btn-danger">Delete</a>  
+              </div>
               </td>
             </tr>
-          </tbody>
+            @endforeach
+        </tbody>
         </table>
         <a href="{{ site_url('Welcome/index') }}" class="btn btn-success">Tambah</a>
       </div>
